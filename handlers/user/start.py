@@ -53,15 +53,17 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # --- REGULAR /start LOGIC ---
     # If no deep link was found, or if it was an invalid format, show the normal welcome message.
+    user_id = update.effective_user.id
     await update.effective_message.reply_text(
         "🎉 Welcome to the Cineverse Bot!\n\n"
         "Use the menu below to find movies and series.",
-        reply_markup=main_reply_keyboard()
+        reply_markup=main_reply_keyboard(user_id)
     )
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Displays detailed help information using correctly escaped MarkdownV2."""
+    user_id = update.effective_user.id
     text = r"""
 📖 *Cineverse Bot Help*
 
@@ -82,7 +84,7 @@ Enjoy free access to all movies and series\!
     await update.effective_message.reply_text(
         text,
         parse_mode=ParseMode.MARKDOWN_V2,
-        reply_markup=main_reply_keyboard()
+        reply_markup=main_reply_keyboard(user_id)
     )
 
 async def deeplink_retrieval_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):

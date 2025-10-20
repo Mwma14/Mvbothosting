@@ -109,8 +109,9 @@ async def get_series_episodes(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 async def done_uploading(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     message, content_type = update.message, context.user_data.get('content_type')
+    user_id = update.effective_user.id
     if not content_type:
-        await message.reply_text("An error occurred. Please /admin again.", reply_markup=main_reply_keyboard())
+        await message.reply_text("An error occurred. Please /admin again.", reply_markup=main_reply_keyboard(user_id))
         return ConversationHandler.END
 
     if content_type == "Movie":
@@ -119,7 +120,7 @@ async def done_uploading(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             return const.GET_CONTENT_VIDEOS
         movie_data = {"id": str(uuid.uuid4()), **context.user_data}
         db_handler.add_movie(movie_data)
-        await message.reply_text(f"✅ Movie '{movie_data['name']}' added!", reply_markup=main_reply_keyboard())
+        await message.reply_text(f"✅ Movie '{movie_data['name']}' added!", reply_markup=main_reply_keyboard(user_id))
     else:
         current_season, total_seasons = context.user_data.get('current_season', 1), context.user_data.get('season_total', 1)
         if not context.user_data.get('seasons', {}).get(str(current_season)):
@@ -132,7 +133,7 @@ async def done_uploading(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         else:
             series_data = {"id": str(uuid.uuid4()), **context.user_data}
             db_handler.add_series(series_data)
-            await message.reply_text(f"✅ Series '{series_data['name']}' added!", reply_markup=main_reply_keyboard())
+            await message.reply_text(f"✅ Series '{series_data['name']}' added!", reply_markup=main_reply_keyboard(user_id))
 
     context.user_data.clear()
     return ConversationHandler.END
@@ -190,12 +191,13 @@ async def get_item_to_rename(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 async def get_new_name_and_save(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     new_name, is_movie, content_id = update.message.text, context.user_data['is_movie'], context.user_data['content_id']
+    user_id = update.effective_user.id
     all_content = db_handler.get_all_movies() if is_movie else db_handler.get_all_series()
     for item in all_content:
         if item['id'] == content_id:
             item['name'] = new_name; break
     (db_handler.save_data(db_handler.MOVIES_DB_PATH, all_content) if is_movie else db_handler.save_data(db_handler.SERIES_DB_PATH, all_content))
-    await update.message.reply_text(f"✅ Successfully renamed to '{new_name}'.", reply_markup=main_reply_keyboard())
+    await update.message.reply_text(f"✅ Successfully renamed to '{new_name}'.", reply_markup=main_reply_keyboard(user_id))
     context.user_data.clear()
     return ConversationHandler.END
 
@@ -298,9 +300,10 @@ async def done_adding_episodes(update: Update, context: ContextTypes.DEFAULT_TYP
         await update.message.reply_text("❌ You haven't added any episodes!", reply_markup=done_uploading_reply_keyboard())
         return const.ADD_SERIES_EPISODES
     
+    user_id = update.effective_user.id
     series = db_handler.find_series_by_id(series_id)
     if not series or season_num not in series['seasons']:
-        await update.message.reply_text("❌ Series or season not found!", reply_markup=main_reply_keyboard())
+        await update.message.reply_text("❌ Series or season not found!", reply_markup=main_reply_keyboard(user_id))
         context.user_data.clear()
         return ConversationHandler.END
     
@@ -309,7 +312,7 @@ async def done_adding_episodes(update: Update, context: ContextTypes.DEFAULT_TYP
     
     await update.message.reply_text(
         f"✅ Successfully added {len(new_episodes)} episode(s) to Season {season_num} of '{series['name']}'!",
-        reply_markup=main_reply_keyboard()
+        reply_markup=main_reply_keyboard(user_id)
     )
     context.user_data.clear()
     return ConversationHandler.END
@@ -356,11 +359,12 @@ async def handle_remove_episode(update: Update, context: ContextTypes.DEFAULT_TY
     removed_episode = series['seasons'][season_num].pop(episode_index)
     db_handler.update_series(series_id, series)
     
+    user_id = update.effective_user.id
     episodes = series['seasons'][season_num]
     if not episodes:
         await query.edit_message_text(
             f"✅ Episode {episode_index + 1} removed. No episodes left in Season {season_num}.",
-            reply_markup=main_reply_keyboard()
+            reply_markup=main_reply_keyboard(user_id)
         )
         context.user_data.clear()
         return ConversationHandler.END
@@ -373,16 +377,17 @@ async def handle_remove_episode(update: Update, context: ContextTypes.DEFAULT_TY
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     context.user_data.clear()
+    user_id = update.effective_user.id
     if update.callback_query:
         await update.callback_query.answer()
         # Edit the message where the inline keyboard was, if possible
         try:
-            await update.callback_query.edit_message_text("Operation cancelled.", reply_markup=main_reply_keyboard()) # <--- MODIFIED HERE
+            await update.callback_query.edit_message_text("Operation cancelled.", reply_markup=main_reply_keyboard(user_id))
         except Exception as e:
             logger.warning(f"Could not edit message on cancel via callback: {e}")
-            await update.callback_query.message.reply_text("Operation cancelled.", reply_markup=main_reply_keyboard()) # Fallback
+            await update.callback_query.message.reply_text("Operation cancelled.", reply_markup=main_reply_keyboard(user_id))
     else:
-        await update.message.reply_text("Operation cancelled.", reply_markup=main_reply_keyboard()) # <--- MODIFIED HERE
+        await update.message.reply_text("Operation cancelled.", reply_markup=main_reply_keyboard(user_id))
     return ConversationHandler.END
 
 admin_conversation_handler = ConversationHandler(

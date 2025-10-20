@@ -11,6 +11,12 @@ Cineverse Bot is a Telegram bot that provides a platform for users to search, br
 - **Access**: Free for all users - no premium membership required
 
 ## Recent Changes
+- **2025-10-20**: Hide navigation buttons from regular users (admin-only feature)
+  - Reply keyboard buttons (All Movies, All Series, Browse by Year, Browse by Category, Help & FAQ) now only visible to admins
+  - Regular users see no keyboard buttons, making the interface cleaner
+  - Only users with IDs in config.ADMIN_IDS can see and use the navigation buttons
+  - Updated main_reply_keyboard() to check user_id against admin list
+  - All admin panel and user handlers updated to pass user_id parameter
 - **2025-10-20**: Enhanced deep link experience with intermediate retrieval button
   - Added Burmese language intermediate message for deep links
   - Users now see "⚜️ ဇာတ်ကားရပါပြီ ⚜️" message with copyright notice first
