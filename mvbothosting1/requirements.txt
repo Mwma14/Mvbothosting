@@ -1,0 +1,5 @@
+# requirements.txt
+python-telegram-bot[ext]
+uuid
+python-telegram-bot[ext]
+telegram
