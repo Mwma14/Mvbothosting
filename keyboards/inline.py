@@ -160,6 +160,13 @@ def cancel_keyboard() -> InlineKeyboardMarkup:
     keyboard = [[InlineKeyboardButton("🔙 Cancel", callback_data=const.CALLBACK_ADMIN_CANCEL)]]
     return InlineKeyboardMarkup(keyboard)
 
+def deeplink_retrieval_keyboard(content_type: str, content_name: str) -> InlineKeyboardMarkup:
+    """Creates a keyboard for deep link content retrieval with Burmese text."""
+    callback_prefix = const.CALLBACK_DEEPLINK_MOVIE if content_type == 'movie' else const.CALLBACK_DEEPLINK_SERIES
+    callback_data = f"{callback_prefix}{content_name}"
+    keyboard = [[InlineKeyboardButton("⚜️ ဒီကိုနှိပ်ပြီး ဇာတ်ကားရယူပါ ⚜️", callback_data=callback_data)]]
+    return InlineKeyboardMarkup(keyboard)
+
 def edit_series_list_keyboard(series_list: List[Dict[str, Any]], page: int = 0) -> InlineKeyboardMarkup:
     """Paginated keyboard for selecting a series to edit."""
     per_page = 10

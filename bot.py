@@ -11,7 +11,7 @@ from telegram.error import TelegramError
 import config
 
 from keyboards.reply import main_reply_keyboard
-from handlers.user.start import start, start_handler, help_handler, help_command
+from handlers.user.start import start, start_handler, help_handler, help_command, deeplink_retrieval_callback
 from handlers.user.search import movie_search_handler, series_search_handler, generic_search_handler
 from handlers.user.browsing import browsing_handlers, show_all_movies, show_all_series, show_browse_by_year, show_browse_by_category # Ensure browsing_handlers is explicitly imported
 from handlers.admin.admin_panel import admin_conversation_handler
@@ -75,6 +75,7 @@ def main():
     application.add_handlers(browsing_handlers) # This is the correct way to add a list of handlers
 
     application.add_handler(CallbackQueryHandler(check_join_status_callback, pattern="^check_join_status$"))
+    application.add_handler(CallbackQueryHandler(deeplink_retrieval_callback, pattern="^deeplink_(movie|series)_"))
     
     # Handlers for Reply Keyboard
     application.add_handler(MessageHandler(filters.Regex("^🎬 All Movies$"), show_all_movies))

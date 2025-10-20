@@ -26,6 +26,8 @@ CALLBACK_RENAME_MOVIE = "ren_movie_"
 CALLBACK_RENAME_SERIES = "ren_series_"
 CALLBACK_MOVIE_PAGE = "movie_page_"
 CALLBACK_SERIES_PAGE = "series_page_"
+CALLBACK_DEEPLINK_MOVIE = "deeplink_movie_"
+CALLBACK_DEEPLINK_SERIES = "deeplink_series_"
 
 # --- Category Callbacks ---
 CALLBACK_CATEGORY_PAGE = "cat_page_"
