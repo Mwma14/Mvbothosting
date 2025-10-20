@@ -15,10 +15,12 @@ Cineverse Bot is a Telegram bot that provides a platform for users to search, br
   - Added Burmese language intermediate message for deep links
   - Users now see "⚜️ ဇာတ်ကားရပါပြီ ⚜️" message with copyright notice first
   - Added "⚜️ ဒီကိုနှိပ်ပြီး ဇာတ်ကားရယူပါ ⚜️" button for content retrieval
-  - Deep links (e.g., /start mv_MovieName) now require button click before showing content
+  - Deep links (e.g., https://t.me/TWMVBOT?start=mv_The_way) now require button click before directly sending content
+  - Button click directly sends movie files or series season selection (no search results shown)
+  - Searches movies/series by name and sends files immediately (like browsing does)
   - Created new callback handlers: CALLBACK_DEEPLINK_MOVIE and CALLBACK_DEEPLINK_SERIES
   - Added deeplink_retrieval_keyboard function for button generation
-  - Implemented deeplink_retrieval_callback to process button clicks
+  - Implemented deeplink_retrieval_callback to search by name and send files directly
 - **2025-10-20**: Removed all premium and payment features - bot is now completely free
   - Removed premium membership system - bot is now free for all users
   - Removed payment methods and pricing information from config
