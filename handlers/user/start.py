@@ -31,8 +31,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # Show intermediate message with button
             await update.effective_message.reply_text(
                 "⚜️ ဇာတ်ကားရပါပြီ ⚜️\n\n"
-                "Copyright ပြဿနာများကိုရှောင်ရှားရန်အတွက်\n"
-                "Bot အခွဲများကို အသုံးပြုပါသည်‼️",
+                "‼️ ဇာတ်ကားကြည့်ရန် ချန်နယ်ကို အရင် join ပါ\n\n"
+                "https://t.me/schannel666",
                 reply_markup=deeplink_retrieval_keyboard('movie', movie_name)
             )
             return # Stop further execution
@@ -45,8 +45,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # Show intermediate message with button
             await update.effective_message.reply_text(
                 "⚜️ ဇာတ်ကားရပါပြီ ⚜️\n\n"
-                "Copyright ပြဿနာများကိုရှောင်ရှားရန်အတွက်\n"
-                "Bot အခွဲများကို အသုံးပြုပါသည်‼️",
+                "‼️ ဇာတ်ကားကြည့်ရန် ချန်နယ်ကို အရင် join ပါ\n\n"
+                "https://t.me/schannel666",
                 reply_markup=deeplink_retrieval_keyboard('series', series_name)
             )
             return # Stop further execution

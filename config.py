@@ -20,5 +20,4 @@ ADMIN_IDS = [6158106622, 1661108890]
 # The bot MUST be an admin in this channel.
 # If you don't want this feature, set it to None.
 # Example: FORCE_JOIN_CHANNEL = "@your_channel_username"
-FORCE_JOIN_CHANNEL = "@TheWayOfficial"
-
+FORCE_JOIN_CHANNEL = None
