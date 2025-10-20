@@ -1,0 +1,48 @@
+[
+    {
+        "id": "66bdc68c-00a4-4e08-9749-b28bb95b1055",
+        "content_type": "Series",
+        "videos": [],
+        "seasons": {
+            "1": [
+                "BAACAgUAAxkBAAO_aOI-XfnPmBnDzaSu0WDLMyy_tjkAAvMMAAIQQSlUKz310eWHFJo2BA",
+                "BAACAgUAAxkBAAPBaOI-XUI3Fw3WUu3KLbtxPDAwIOAAAvUMAAIQQSlUtavuEeaGAAFFNgQ"
+            ]
+        },
+        "name": "Marvel",
+        "cover_photo": "AgACAgUAAxkBAAO1aOI-Oabu86wqn-wmsOr7SzA88A0AAtkNaxtJawlXrvR93rsLrt4BAAMCAAN5AAM2BA",
+        "year": 2017,
+        "categories": [
+            "Action"
+        ],
+        "timer": 1,
+        "season_total": 1,
+        "current_season": 1
+    },
+    {
+        "id": "2be2a891-db8c-40ea-aaba-41ab9e9a81d3",
+        "content_type": "Series",
+        "videos": [],
+        "seasons": {
+            "1": [
+                "BAACAgUAAxkBAAMnaOImXQV9NMFPyMMwnY7oJ7Yf3_QAArwWAAL9d8BWm-Ta_AbjvBw2BA",
+                "BAACAgUAAxkBAAO_aOI-XfnPmBnDzaSu0WDLMyy_tjkAAvMMAAIQQSlUKz310eWHFJo2BA",
+                "BAACAgUAAxkBAAPAaOI-XbzZddc0Fi_gObW5KIshYasAAvQMAAIQQSlUZr-L9nlHnhQ2BA",
+                "BAACAgUAAxkBAAPBaOI-XUI3Fw3WUu3KLbtxPDAwIOAAAvUMAAIQQSlUtavuEeaGAAFFNgQ",
+                "BAACAgUAAxkBAAO_aOI-XfnPmBnDzaSu0WDLMyy_tjkAAvMMAAIQQSlUKz310eWHFJo2BA",
+                "BAACAgUAAxkBAAPAaOI-XbzZddc0Fi_gObW5KIshYasAAvQMAAIQQSlUZr-L9nlHnhQ2BA",
+                "BAACAgUAAxkBAAPBaOI-XUI3Fw3WUu3KLbtxPDAwIOAAAvUMAAIQQSlUtavuEeaGAAFFNgQ",
+                "BAACAgUAAxkBAAMnaOImXQV9NMFPyMMwnY7oJ7Yf3_QAArwWAAL9d8BWm-Ta_AbjvBw2BA"
+            ]
+        },
+        "name": "U",
+        "cover_photo": "AgACAgUAAxkBAAIBjGjitkh0oRKaL1Slzot7LmO0olVYAAKcDGsbqY8ZV0jzvaX8ESBaAQADAgADeQADNgQ",
+        "year": 1988,
+        "categories": [
+            "7"
+        ],
+        "timer": 1,
+        "season_total": 1,
+        "current_season": 1
+    }
+]
